@@ -15,6 +15,7 @@ class Ship
         $this->name = $name;
         $this->underRepair = mt_rand(1, 100) < 30;
     }
+    
     // return if the ship is optional, we return the opposite for it's status for readability.
     public function isFunctional()
     {
@@ -24,39 +25,6 @@ class Ship
     public function sayHello()
     {
         echo 'HELLO';
-    }
-
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    public function getWeaponPower()
-    {
-        return $this->weaponPower;
-    }
-
-    public function setWeaponPower($weaponPow)
-    {
-        if (!is_numeric($weaponPow)) {
-            throw new Exception('Invalid weapon power passed '.$weaponPow);
-        }
-        $this->weaponPower = $weaponPow;
-    }
-
-    public function getJediFactor()
-    {
-        return $this->jediFactor;
-    }
-
-    public function setJediFactor($jediPow)
-    {
-        $this->jediFactor = $jediPow;
     }
 
     public function getNameAndSpecs($useShortFormat = false)
@@ -84,6 +52,38 @@ class Ship
     {
         // compare current ship to passed in ship
         return $givenShip->strength > $this->strength;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getWeaponPower()
+    {
+        return $this->weaponPower;
+    }
+
+    public function setWeaponPower($weaponPow)
+    {
+        if (!is_numeric($weaponPow)) {
+            throw new Exception('Invalid weapon power passed '.$weaponPow);
+        }
+        $this->weaponPower = $weaponPow;
+    }
+    public function getJediFactor()
+    {
+        return $this->jediFactor;
+    }
+
+    public function setJediFactor($jediPow)
+    {
+        $this->jediFactor = $jediPow;
     }
 
     public function setStrength($strength)

@@ -67,7 +67,7 @@ $outcome = battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
             <div class="result-box center-block">
                 <h3 class="text-center audiowide">
                     Winner:
-                    <?php if ($outcome['winning_ship']): ?>
+                    <?php if ($outcome['winning_ship'] !== null): ?>
                         <?php echo $outcome['winning_ship']->getName(); ?>
                     <?php else: ?>
                         Nobody

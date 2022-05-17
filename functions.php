@@ -39,7 +39,7 @@ function get_ships()
  *
  * @return array With keys winning_ship, losing_ship & used_jedi_powers
  */
-function battle(Ship $ship1, $ship1Quantity,Ship $ship2, $ship2Quantity)
+function battle(Ship $ship1, int $ship1Quantity, Ship $ship2, int $ship2Quantity)
 {
     $ship1Health = $ship1->getStrength() * $ship1Quantity;
     $ship2Health = $ship2->getStrength() * $ship2Quantity;
@@ -87,7 +87,7 @@ function battle(Ship $ship1, $ship1Quantity,Ship $ship2, $ship2Quantity)
         'used_jedi_powers' => $usedJediPowers,
     );
 }
-
+// TODO: May need better solution for how good the force is
 function didJediDestroyShipUsingTheForce(Ship $ship)
 {
     $jediHeroProbability = $ship->getJediFactor() / 100;
