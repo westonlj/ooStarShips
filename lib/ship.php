@@ -7,6 +7,20 @@ class Ship
     private $jediFactor = 0;
     private $strength = 0;
 
+    private $underRepair;
+
+    // constructor called everytime we call "SHIP" or a new instantiation
+    public function __construct($name)
+    {
+        $this->name = $name;
+        $this->underRepair = mt_rand(1, 100) < 30;
+    }
+    // return if the ship is optional, we return the opposite for it's status for readability.
+    public function isFunctional()
+    {
+        return !$this->underRepair;
+    }
+
     public function sayHello()
     {
         echo 'HELLO';
@@ -29,6 +43,9 @@ class Ship
 
     public function setWeaponPower($weaponPow)
     {
+        if (!is_numeric($weaponPow)) {
+            throw new Exception('Invalid weapon power passed '.$weaponPow);
+        }
         $this->weaponPower = $weaponPow;
     }
 
@@ -42,9 +59,9 @@ class Ship
         $this->jediFactor = $jediPow;
     }
 
-    public function getNameAndSpecs($userShortFormat = false)
+    public function getNameAndSpecs($useShortFormat = false)
     {
-        if ($userShortFormat) {
+        if ($useShortFormat) {
             return sprintf(
                 '%s: %s/%s/%s',
                 $this->name,
