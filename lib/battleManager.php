@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Fighting algorithm
+ * 
+ * @return BattleResult
+ */
 class BattleManager
 {
         public function battle(Ship $ship1, int $ship1Quantity, Ship $ship2, int $ship2Quantity)
@@ -43,12 +47,8 @@ class BattleManager
                 $losingShip = $ship2;
                 $usedJediPowers = $ship1UsedJediPowers;
             }
-
-            return array(
-                'winning_ship' => $winningShip,
-                'losing_ship' => $losingShip,
-                'used_jedi_powers' => $usedJediPowers,
-            );
+            // returns new object with ship objects
+            return new BattleResult($usedJediPowers, $winningShip, $losingShip);
         }
         // only code effected is in this file.
         // TODO: May need better solution for how good the force is

@@ -14,7 +14,7 @@ if (isset($_GET['error'])) {
             $errorMessage = 'You\'re trying to fight with a ship that\'s unknown to the galaxy?';
             break;
         case 'bad_quantities':
-            $errorMessage = 'You pick strange numbers of ships to battle - try again.';
+            $errorMessage = 'You picked a strange numbers of ships to battle - try again.';
             break;
         default:
             $errorMessage = 'There was a disturbance in the force. Try again.';
