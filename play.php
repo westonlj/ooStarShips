@@ -1,7 +1,7 @@
 <?php
 
 // __DIR__ is a constant pointing to our directory
-
+// only calling the ship class once from the file
 require_once __DIR__.'/lib/ship.php';
 
 function printShipSummary($someShip)

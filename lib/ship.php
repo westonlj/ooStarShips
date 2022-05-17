@@ -2,10 +2,10 @@
 
 class Ship
 {
-    public $name;
-    public $weaponPower = 0;
-    public $jediFactor = 0;
-    public $strength = 0;
+    private $name;
+    private $weaponPower = 0;
+    private $jediFactor = 0;
+    private $strength = 0;
 
     public function sayHello()
     {
@@ -17,7 +17,32 @@ class Ship
         return $this->name;
     }
 
-    public function getNameAndSpecs($userShortFormat)
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getWeaponPower()
+    {
+        return $this->weaponPower;
+    }
+
+    public function setWeaponPower($weaponPow)
+    {
+        $this->weaponPower = $weaponPow;
+    }
+
+    public function getJediFactor()
+    {
+        return $this->jediFactor;
+    }
+
+    public function setJediFactor($jediPow)
+    {
+        $this->jediFactor = $jediPow;
+    }
+
+    public function getNameAndSpecs($userShortFormat = false)
     {
         if ($userShortFormat) {
             return sprintf(
@@ -44,4 +69,16 @@ class Ship
         return $givenShip->strength > $this->strength;
     }
 
+    public function setStrength($strength)
+    {
+        if (!is_numeric($strength)) {
+            throw new Exception('Invalid strength passed '.$strength);
+        }
+        $this-> strength = $strength;
+    }
+
+    public function getStrength()
+    {
+        return $this->strength;
+    }
 }
