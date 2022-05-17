@@ -2,6 +2,7 @@
 
 class Ship
 {
+    private $id;
     private $name;
     private $weaponPower = 0;
     private $jediFactor = 0;
@@ -52,6 +53,18 @@ class Ship
     {
         // compare current ship to passed in ship
         return $givenShip->strength > $this->strength;
+    }
+    /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     public function getName()

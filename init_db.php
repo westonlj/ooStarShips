@@ -3,7 +3,7 @@
 /*
  * SETTINGS!
  */
-$databaseName = 'oo_battle';
+$databaseName = 'OOPShips';
 $databaseUser = 'root';
 $databasePassword = '';
 
