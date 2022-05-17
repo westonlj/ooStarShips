@@ -1,7 +1,8 @@
 <?php
-require __DIR__.'/functions.php';
+require __DIR__.'/bootstrap.php';
 
-$ships = get_ships(); //returns an array of data
+$shipLoader = new ShipLoader();
+$ships = $shipLoader->getShips(); //returns an array of data
 
 $ship1Name = isset($_POST['ship1_name']) ? $_POST['ship1_name'] : null;
 $ship1Quantity = isset($_POST['ship1_quantity']) ? $_POST['ship1_quantity'] : 1;
@@ -26,8 +27,9 @@ if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
 $ship1 = $ships[$ship1Name];
 $ship2 = $ships[$ship2Name];
 // var_dump($ship1, $ship2);
+$battleManager = new BattleManager();
 
-$outcome = battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
+$outcome = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
 ?>
 
 <html>
