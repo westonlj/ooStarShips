@@ -5,9 +5,10 @@ $shipLoader = new ShipLoader();
 $ships = $shipLoader->getShips(); //returns an array of data
 
 $ship1Name = isset($_POST['ship1_name']) ? $_POST['ship1_name'] : null;
-$ship1Quantity = isset($_POST['ship1_quantity']) ? $_POST['ship1_quantity'] : 1;
+$ship1Quantity = isset($_POST['ship1_quantity']) && $_POST['ship1_quantity'] !== '' ? $_POST['ship1_quantity'] : 1;
 $ship2Name = isset($_POST['ship2_name']) ? $_POST['ship2_name'] : null;
-$ship2Quantity = isset($_POST['ship2_quantity']) ? $_POST['ship2_quantity'] : 1;
+$ship2Quantity = isset($_POST['ship2_quantity']) && $_POST['ship2_quantity'] !== '' ? $_POST['ship2_quantity'] : 1;
+
 
 if (!$ship1Name || !$ship2Name) {
     header('Location: /index.php?error=missing_data');
@@ -28,8 +29,7 @@ $ship1 = $ships[$ship1Name];
 $ship2 = $ships[$ship2Name];
 // var_dump($ship1, $ship2);
 $battleManager = new BattleManager();
-
-$outcome = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
+$battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
 ?>
 
 <html>
@@ -69,21 +69,21 @@ $outcome = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity
             <div class="result-box center-block">
                 <h3 class="text-center audiowide">
                     Winner:
-                    <?php if ($outcome['winning_ship'] !== null): ?>
-                        <?php echo $outcome['winning_ship']->getName(); ?>
+                    <?php if ($battleResult->isThereAWinner() !== null): ?>
+                        <?php echo $battleResult->getWinningShip()->getName(); ?>
                     <?php else: ?>
                         Nobody
                     <?php endif; ?>
                 </h3>
                 <p class="text-center">
-                    <?php if ($outcome['winning_ship'] == null): ?>
+                    <?php if ($battleResult->isThereAWinner() == null): ?>
                         Both ships destroyed each other in an epic battle to the end.
                     <?php else: ?>
-                        The <?php echo $outcome['winning_ship']->getName(); ?>
-                        <?php if ($outcome['used_jedi_powers']): ?>
+                        The <?php echo $battleResult->getWinningShip()->getName(); ?>
+                        <?php if ($battleResult->wereJediPowersUsed()): ?>
                             used its Jedi Powers for a stunning victory!
                         <?php else: ?>
-                            overpowered and destroyed the <?php echo $outcome['losing_ship']->getName(); ?>s
+                            overpowered and destroyed the <?php echo $battleResult->getLosingShip()->getName(); ?>
                         <?php endif; ?>
                     <?php endif; ?>
                 </p>
