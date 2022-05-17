@@ -8,6 +8,7 @@ class BattleManager
 {
         public function battle(Ship $ship1, int $ship1Quantity, Ship $ship2, int $ship2Quantity)
         {
+            // TODO: health management
             $ship1Health = $ship1->getStrength() * $ship1Quantity;
             $ship2Health = $ship2->getStrength() * $ship2Quantity;
 
@@ -32,6 +33,9 @@ class BattleManager
                 $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
                 $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
             }
+            // We are now effecting/ changing data
+            $ship1->setStrength($ship1Health);
+            $ship2->setStrength($ship2Health);
 
             if ($ship1Health <= 0 && $ship2Health <= 0) {
                 // they destroyed each other
