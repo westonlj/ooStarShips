@@ -1,15 +1,12 @@
 <?php
 require __DIR__.'/bootstrap.php';
 
-$pdo = new PDO(
-    $configuration['db_dsn'],
-    $configuration['db_user'],
-    $configuration['db_pass']
-);
+$container = new Container($configuration);
+$pdo = $container->getPDO();
 $shipLoader = new ShipLoader($pdo);
-$ships = $shipLoader->getShips(); //returns an array of data
+$ships = $shipLoader->getShips(); //returns an array of Ship OBJs
+
 // Fixed error where ship quantity would not default to 1: then changed it to be cleaner.
-// $ship1Quantity = isset($_POST['ship1_quantity']) && $_POST['ship1_quantity'] !== '' ? $_POST['ship1_quantity'] : 1;
 $ship1Id = isset($_POST['ship1_id']) ? $_POST['ship1_id'] : null;
 $ship1Quantity = empty(isset($_POST['ship1_quantity'])) ? $_POST['ship1_quantity'] : 1;
 $ship2Id = isset($_POST['ship2_id']) ? $_POST['ship2_id'] : null;
@@ -74,7 +71,8 @@ $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Qua
             <div class="result-box center-block">
                 <h3 class="text-center audiowide">
                     Winner:
-                    <?php if ($battleResult->isThereAWinner() !== null): ?>
+                    <!-- This was checking for null, but returns a boolean, changed logic to handle -->
+                    <?php if ($battleResult->isThereAWinner()): ?>
                         <?php echo $battleResult->getWinningShip()->getName(); ?>
                     <?php else: ?>
                         Nobody
