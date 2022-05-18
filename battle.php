@@ -1,10 +1,12 @@
 <?php
 require __DIR__.'/bootstrap.php';
 
-$shipLoader = new ShipLoader(
+$pdo = new PDO(
     $configuration['db_dsn'],
     $configuration['db_user'],
-    $configuration['db_pass']);
+    $configuration['db_pass']
+);
+$shipLoader = new ShipLoader($pdo);
 $ships = $shipLoader->getShips(); //returns an array of data
 // Fixed error where ship quantity would not default to 1: then changed it to be cleaner.
 // $ship1Quantity = isset($_POST['ship1_quantity']) && $_POST['ship1_quantity'] !== '' ? $_POST['ship1_quantity'] : 1;

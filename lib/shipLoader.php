@@ -6,17 +6,10 @@ class ShipLoader
     // service class property: used to store options and objs for the class
     private $pdo;
 
-    private $dbDSN;
-
-    private $dbUser;
-
-    private $dbPass;
     // configure db data
-    public function __construct($dbDSN, $dbUser, $dbPass)
+    public function __construct(PDO $pdo)
     {
-        $this->dbDSN = $dbDSN;
-        $this->dbUser = $dbUser;
-        $this->dbPass = $dbPass;
+        $this->pdo = $pdo;
     }
 
     /**
@@ -76,12 +69,13 @@ class ShipLoader
     // reduce number of pdo objects created
     private function getPDO()
     {
-        if ($this->pdo === null) {
-            $pdo = new PDO($this->dbDSN, $this->dbUser, $this->dbPass);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            $this->pdo = $pdo;
-        }
         return $this->pdo;
     }
+
+    // if ($this->pdo === null) {
+    //     $pdo = new PDO($this->dbDSN, $this->dbUser, $this->dbPass);
+    //     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    //     $this->pdo = $pdo;
+    // }
 }
