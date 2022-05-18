@@ -2,9 +2,8 @@
 require __DIR__.'/bootstrap.php';
 
 $container = new Container($configuration);
-$pdo = $container->getPDO();
-$shipLoader = new ShipLoader($pdo);
-$ships = $shipLoader->getShips(); //returns an array of Ship OBJs
+$shipLoader = $container->getShipLoader();
+$ships = $shipLoader->getShips();
 
 // Fixed error where ship quantity would not default to 1: then changed it to be cleaner.
 $ship1Id = isset($_POST['ship1_id']) ? $_POST['ship1_id'] : null;
@@ -30,7 +29,7 @@ if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
     die;
 }
 
-$battleManager = new BattleManager();
+$battleManager = $container->getBattleManager();
 $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
 ?>
 
