@@ -1,10 +1,11 @@
 <?php
 require __DIR__.'/bootstrap.php';
-
+// $configuration comes from bootstrap.php
 $container = new Container($configuration);
 $shipLoader = $container->getShipLoader();
 $ships = $shipLoader->getShips();
 
+// Error checking for bad data passed to start a battle
 $errorMessage = '';
 if (isset($_GET['error'])) {
     switch ($_GET['error']) {
@@ -90,6 +91,7 @@ if (isset($_GET['error'])) {
                         <input class="center-block form-control text-field" type="text" name="ship1_quantity" placeholder="Enter Number of Ships" />
                         <select class="center-block form-control btn drp-dwn-width btn-default dropdown-toggle" name="ship1_id">
                             <option value="">Choose a Ship</option>
+                            <!-- Originally had $key=>$ship to iterate through the array of objs -->
                             <?php foreach ($ships as $ship): ?>
                                 <?php if ($ship->isFunctional()) : ?>
                                 <option value="<?php echo $ship->getId(); ?>"><?php echo $ship->getNameAndSpecs(true); ?></option>

@@ -1,5 +1,5 @@
 <?php
-
+// Model Class
 class Ship
 {
     private $id;

@@ -33,6 +33,7 @@ class Container
                 $this->configuration['db_user'],
                 $this->configuration['db_pass']
             );
+            // displays mysql errors we normally miss
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
 
