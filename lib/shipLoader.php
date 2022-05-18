@@ -6,6 +6,19 @@ class ShipLoader
     // service class property: used to store options and objs for the class
     private $pdo;
 
+    private $dbDSN;
+
+    private $dbUser;
+
+    private $dbPass;
+    // configure db data
+    public function __construct($dbDSN, $dbUser, $dbPass)
+    {
+        $this->dbDSN = $dbDSN;
+        $this->dbUser = $dbUser;
+        $this->dbPass = $dbPass;
+    }
+
     /**
      * @return Ship[]
      */
@@ -64,7 +77,7 @@ class ShipLoader
     private function getPDO()
     {
         if ($this->pdo === null) {
-            $pdo = new PDO('mysql:host=localhost;dbname=OOPShips', 'root');
+            $pdo = new PDO($this->dbDSN, $this->dbUser, $this->dbPass);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $this->pdo = $pdo;
