@@ -1,10 +1,10 @@
 <?php
 
-require_once __DIR__.'/lib/ship.php';
-require_once __DIR__.'/lib/battleManager.php';
-require_once __DIR__.'/lib/shipLoader.php';
-require_once __DIR__.'/lib/battleResult.php';
-require_once __DIR__.'/lib/container.php';
+require_once __DIR__.'/lib/Model/ship.php';
+require_once __DIR__.'/lib/Model/battleResult.php';
+require_once __DIR__.'/lib/Service/battleManager.php';
+require_once __DIR__.'/lib/Service/shipLoader.php';
+require_once __DIR__.'/lib/Service/container.php';
 
 // DB CONFIGURATION INFO
 $configuration = array(

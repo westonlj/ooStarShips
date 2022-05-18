@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Model object
+ */
 class BattleResult
 {
     private $usedJediPowers;
