@@ -28,7 +28,7 @@ class ShipLoader
         return $ships;
     }
     /**
-     * @return null/Ship[]
+     * @return Ship/null
      */
     public function findOneById($id)
     {
