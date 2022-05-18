@@ -36,9 +36,10 @@ class ShipLoader
         $statement = $pdo->prepare('SELECT * FROM ship WHERE id = :id');
         // preapared statement
         $statement->execute(array('id' => $id));
+        // $statement->bindParam()
         $shipArray = $statement->fetch(PDO::FETCH_ASSOC);
 
-        if (!$shipArray) {
+        if ($shipArray == false) {
             return null;
         }
 

@@ -25,10 +25,7 @@ class BattleResult
         return $this->usedJediPowers;
     }
     
-    /**
-     * @return Ship/null
-     */
-    public function getWinningShip()
+    public function getWinningShip(): ?Ship
     {
         return $this->winningShip;
     }

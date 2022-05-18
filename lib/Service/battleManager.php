@@ -33,7 +33,7 @@ class BattleManager
                 $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
                 $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
             }
-            // We are now effecting/ changing data
+            // We are now effecting/ changing data PASS BY REFERENCE
             $ship1->setStrength($ship1Health);
             $ship2->setStrength($ship2Health);
 

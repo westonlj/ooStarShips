@@ -7,9 +7,21 @@ $ships = $shipLoader->getShips();
 
 // Fixed error where ship quantity would not default to 1: then changed it to be cleaner.
 $ship1Id = isset($_POST['ship1_id']) ? $_POST['ship1_id'] : null;
-$ship1Quantity = empty(isset($_POST['ship1_quantity'])) ? $_POST['ship1_quantity'] : 1;
 $ship2Id = isset($_POST['ship2_id']) ? $_POST['ship2_id'] : null;
-$ship2Quantity = empty(isset($_POST['ship2_quantity'])) ? $_POST['ship2_quantity'] : 1;
+
+$ship1Quantity = 1;
+if (isset($_POST['ship1_quantity'])) {
+    if ($_POST['ship1_quantity'] > 0) {
+        $ship1Quantity = $_POST['ship1_quantity'];
+    }
+}
+
+$ship2Quantity = 1;
+if (isset($_POST['ship2_quantity'])) {
+    if ($_POST['ship2_quantity'] > 0) {
+        $ship2Quantity = $_POST['ship2_quantity'];
+    }
+}
 
 if (!$ship1Id || !$ship2Id) {
     header('Location: /index.php?error=missing_data');
@@ -24,10 +36,10 @@ if (!$ship1 || !$ship2) {
     die;
 }
 
-if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
-    header('Location: /index.php?error=bad_quantities');
-    die;
-}
+// if ($ship1Quantity === null || $ship2Quantity <= 0) {
+//     header('Location: /index.php?error=bad_quantities');
+//     die;
+// }
 
 $battleManager = $container->getBattleManager();
 $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
