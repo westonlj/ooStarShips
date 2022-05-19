@@ -8,4 +8,14 @@ class RebelShip extends Ship
         $key = array_rand($coolJedis);
         return $key;
     }
+
+    public function getType()
+    {
+        return 'Rebel';
+    }
+
+    public function isFunctional()
+    {
+        return true;
+    }
 }

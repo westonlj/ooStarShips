@@ -111,4 +111,9 @@ class Ship
     {
         return $this->strength;
     }
+
+    public function getType()
+    {
+        return 'Empire';
+    }
 }
